@@ -1,20 +1,27 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Collapse,
-  Typography,
-} from "@mui/material";
-import CommentIcon from "@mui/icons-material/Comment";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import Comments from "./Comments";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Collapse from "@mui/material/Collapse";
+// tree-shaking the material ui components
+import CommentIcon from "@mui/icons-material/Comment";
+
 import { EnhancedPost } from "@/types";
+
 import AddComment from "./AddComment";
 
 type Props = {
   post: EnhancedPost;
 };
+
+// use dynamic import to remove the component from the initial JS bundle
+// this makes Comments a strictly client component, no SSR whatsoever
+const Comments = dynamic(() => import("./Comments"), {
+  ssr: false,
+});
 
 const Post = ({ post }: Props) => {
   const [showComments, setShowComments] = useState(false);

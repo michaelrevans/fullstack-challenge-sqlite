@@ -1,7 +1,11 @@
 "use client";
 
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+
 import { trpcReact } from "@/trpc/trpcReact";
-import { Button, Container, Typography } from "@mui/material";
+
 import Post from "./components/Post";
 
 export default function Home() {

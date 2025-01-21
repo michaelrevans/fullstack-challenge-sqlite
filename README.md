@@ -36,3 +36,10 @@ Consider the following, for instance leaving comments close to where this is rel
 - Scalability of the solution:
   - Switch to a Postgres database allowing for better scalability including introducing read replicas and sharding
   - Infinite scroll - not implemented due to time restrictions - instead of having to click on a button to load more posts
+- Performance:
+  - Should be quite good already due to small size of the app and simple query to retrieve data from DB. This could be improved by loading a smaller number of posts on initial page load and then loading more behind the scenes using similar functionality to infinite scroll
+  - Data caching with React Query prevents loading the same data multiple times
+  - Loading only comment count on initial page load prevents from loading unnecessary data (since the comments are not shown on initial load), loading them for an individual post when the button is clicked
+  - Using skeleton loading components could be good to give the perception of faster loading times
+  - Code splitting with dynamic imports of certain components (i.e. comments) reduces initial bundle size and result in faster initial page load
+  

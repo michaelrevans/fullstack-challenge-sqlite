@@ -1,7 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Box, TextField, Button, CircularProgress } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import { trpcReact } from "@/trpc/trpcReact";
-import SendIcon from '@mui/icons-material/Send';
 
 type Props = {
   postId: number;
