@@ -8,6 +8,11 @@ import { trpcReact } from "@/trpc/trpcReact";
 
 import Post from "./components/Post";
 
+// SSR: Complete SSR is not possible due to a stateful child component, but Next will pre-render as much as possible on the server in any case
+// The browser then hydrates the components once loaded using the server-side rendered file and the remaining client-side JavaScript
+// If SSR were possible, we could remove the "use client" directive at the top of the file and the whole page would be pre-rendered at run-time
+
+// SSG: Next generates a static HTML file for the page (excluding dynamic components) at build-time
 export default function Home() {
   const { data, fetchNextPage, isLoading } =
     trpcReact.getPosts.useInfiniteQuery(

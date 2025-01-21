@@ -48,3 +48,5 @@ Consider the following, for instance leaving comments close to where this is rel
   - Sentry is good for exception handling and also custom messaging (e.g. when data integrity comes into question)
   - Datadog can be used for traces, metrics and logging, as well as real user monitoring
   - Prometheus/Grafana could be alternatives to Datadog as they are open source, but require more setup for self-hosting
+- SSR and SSG:
+  - See comments in component files
