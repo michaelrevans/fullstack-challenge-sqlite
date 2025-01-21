@@ -42,4 +42,5 @@ Consider the following, for instance leaving comments close to where this is rel
   - Loading only comment count on initial page load prevents from loading unnecessary data (since the comments are not shown on initial load), loading them for an individual post when the button is clicked
   - Using skeleton loading components could be good to give the perception of faster loading times
   - Code splitting with dynamic imports of certain components (i.e. comments) reduces initial bundle size and result in faster initial page load
-  
+- What Database type would be fit
+  - added a note in the migration_lock.toml file
