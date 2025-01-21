@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import Comments from "./Comments";
 import { EnhancedPost } from "@/types";
+import AddComment from "./AddComment";
 
 type Props = {
   post: EnhancedPost;
@@ -53,6 +54,7 @@ const Post = ({ post }: Props) => {
             </Collapse>
           </Box>
         )}
+        <AddComment postId={post.id} />
       </CardContent>
     </Card>
   );

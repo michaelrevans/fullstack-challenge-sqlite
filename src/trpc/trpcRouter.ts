@@ -34,6 +34,11 @@ export const trpcRouter = t.router({
         where: { postId: input.postId },
       });
     }),
+  addComment: t.procedure
+    .input(z.object({ content: z.string(), postId: z.number() }))
+    .mutation(async ({ input }) => {
+      return await prismaClient.comment.create({ data: input });
+    }),
 });
 
 export type TrpcRouter = typeof trpcRouter;
