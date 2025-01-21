@@ -25,3 +25,8 @@ CREATE TABLE "Comment" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- #Scalability
+-- introduce indices:
+--   a) posts on authorId to retrieve each post's author
+--   b) comments on postId to retrieve comments for each post

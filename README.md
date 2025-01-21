@@ -31,3 +31,8 @@ Consider the following, for instance leaving comments close to where this is rel
 - How monitoring and logging could be implemented
 - SSR and SSG
 - Possible infrastructure setup to help with the above
+
+
+- Scalability of the solution:
+  - Switch to a Postgres database allowing for better scalability including introducing read replicas and sharding
+  - Infinite scroll - not implemented due to time restrictions - instead of having to click on a button to load more posts
