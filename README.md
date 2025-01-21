@@ -44,3 +44,7 @@ Consider the following, for instance leaving comments close to where this is rel
   - Code splitting with dynamic imports of certain components (i.e. comments) reduces initial bundle size and result in faster initial page load
 - What Database type would be fit
   - added a note in the migration_lock.toml file
+- How monitoring and logging could be implemented:
+  - Sentry is good for exception handling and also custom messaging (e.g. when data integrity comes into question)
+  - Datadog can be used for traces, metrics and logging, as well as real user monitoring
+  - Prometheus/Grafana could be alternatives to Datadog as they are open source, but require more setup for self-hosting
