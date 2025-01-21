@@ -21,22 +21,12 @@ const AddComment = ({ postId }: Props) => {
         return [...existingComments, data];
       });
 
-      utils.getPosts.setData(undefined, (posts) => {
-        if (!posts) return undefined;
-
-        return [...posts!].map((post) => {
-          if (post.id !== postId) return post;
-
-          const newCommentCount = (post!._count!.comments ?? 0) + 1;
-          return {
-            ...post,
-            _count: {
-              ...post!._count,
-              comments: newCommentCount,
-            },
-          };
-        });
-      });
+      // I removed the update to the post data after introducing useInfiniteQuery
+      // since it changed the shape of the data and introduced a complication
+      // with the cursor.
+      // This breaks the functionality that incremenets the comment count when
+      // a new comment is added, but of course I would add this back in
+      // given some more time to figure it out.
     },
   });
 
