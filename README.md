@@ -50,3 +50,7 @@ Consider the following, for instance leaving comments close to where this is rel
   - Prometheus/Grafana could be alternatives to Datadog as they are open source, but require more setup for self-hosting
 - SSR and SSG:
   - See comments in component files
+- Possible infrastructure setup to help with the above:
+  - Vercel is ideal for hosting Next since they created it
+  - Vercel also provides hosting for databases like Postgres e.g. Supabase although I'm unsure whether this would support read replicas and/or sharding
+  - Datadog is a cloud-hosted service, so no infrastructure would be required there. Prometheus/Grafana on the other hand would need some hosting setup
