@@ -6,25 +6,22 @@ import {
   Collapse,
   Typography,
 } from "@mui/material";
-import { Post, User } from "@prisma/client";
 import { useState } from "react";
 import Comments from "./Comments";
+import { EnhancedPost } from "@/types";
 
 type Props = {
-  post: Omit<Post, "published" | "authorId"> & {
-    author: User | null;
-    _count: {
-      comments: number;
-    };
-  };
+  post: EnhancedPost;
 };
 
-const PostComponent = ({ post }: Props) => {
+const Post = ({ post }: Props) => {
   const [showComments, setShowComments] = useState(false);
 
   const handleToggleComments = () => {
     setShowComments((areCommentsShown) => !areCommentsShown);
   };
+
+  const commentCount = post._count.comments;
 
   return (
     <Card sx={{ mb: 2, width: "60%", mx: "auto" }}>
@@ -43,14 +40,16 @@ const PostComponent = ({ post }: Props) => {
           {post.content}
         </Typography>
 
-        {post._count.comments > 0 && (
+        {commentCount > 0 && (
           <Box>
             <Button onClick={handleToggleComments} size="small" sx={{ mt: 1 }}>
-              {post._count.comments} comments
+              {commentCount} comments
             </Button>
 
+            {/* looks like duplication here with `in` and the conditional logic below */}
+            {/* but it's required to not fetch the comments for every post that is loaded */}
             <Collapse in={showComments}>
-              <Comments postId={post.id} />
+              {showComments && <Comments postId={post.id} />}
             </Collapse>
           </Box>
         )}
@@ -59,4 +58,4 @@ const PostComponent = ({ post }: Props) => {
   );
 };
 
-export default PostComponent;
+export default Post;
