@@ -7,10 +7,35 @@ type Props = {
 };
 
 const AddComment = ({ postId }: Props) => {
+  const utils = trpcReact.useUtils();
+
   const [newComment, setNewComment] = useState("");
   const { mutate, isLoading } = trpcReact.addComment.useMutation({
-    onSuccess() {
+    onSuccess(data) {
       setNewComment("");
+
+      utils.getComments.setData({ postId }, (existingComments) => {
+        if (!existingComments) return undefined;
+
+        return [...existingComments, data];
+      });
+
+      utils.getPosts.setData(undefined, (posts) => {
+        if (!posts) return undefined;
+
+        return [...posts!].map((post) => {
+          if (post.id !== postId) return post;
+
+          const newCommentCount = (post!._count!.comments ?? 0) + 1;
+          return {
+            ...post,
+            _count: {
+              ...post!._count,
+              comments: newCommentCount,
+            },
+          };
+        });
+      });
     },
   });
 
