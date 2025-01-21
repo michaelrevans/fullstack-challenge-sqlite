@@ -8,25 +8,41 @@ const t = initTRPC.create({
 });
 
 export const trpcRouter = t.router({
-  getPosts: t.procedure.query(async ({ ctx, input }) => {
-    return await prismaClient.post.findMany({
-      select: {
-        id: true,
-        title: true,
-        content: true,
-        author: true,
-        _count: {
-          select: {
-            comments: true,
+  getPosts: t.procedure
+    .input(z.object({ cursor: z.number().nullish() }))
+    .query(async ({ input }) => {
+      const cursor = input.cursor;
+      const limit = 20;
+
+      const posts = await prismaClient.post.findMany({
+        select: {
+          id: true,
+          title: true,
+          content: true,
+          author: true,
+          _count: {
+            select: {
+              comments: true,
+            },
           },
         },
-      },
-      take: 100,
-      where: {
-        published: true,
-      },
-    });
-  }),
+        take: limit + 1,
+        cursor: cursor ? { id: cursor } : undefined,
+        skip: 0,
+        orderBy: { id: "asc" },
+        where: {
+          published: true,
+        },
+      });
+
+      // add some provision for exhausting posts in DB
+      const nextCursor = posts.pop()?.id;
+
+      return {
+        posts,
+        nextCursor,
+      };
+    }),
   getComments: t.procedure
     .input(z.object({ postId: z.number() }))
     .query(async ({ input }) => {
