@@ -6,7 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
-// tree-shaking the material ui components
+// #Performance tree-shaking the material ui components
 import CommentIcon from "@mui/icons-material/Comment";
 
 import { EnhancedPost } from "@/types";
@@ -18,7 +18,8 @@ type Props = {
 };
 
 // use dynamic import to remove the component from the initial JS bundle
-// this makes Comments a strictly client component, no SSR whatsoever
+
+// #SSR this makes Comments a strictly client component, no SSR whatsoever
 const Comments = dynamic(() => import("./Comments"), {
   ssr: false,
 });

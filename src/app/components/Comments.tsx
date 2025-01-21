@@ -1,5 +1,10 @@
 import { trpcReact } from "@/trpc/trpcReact";
-import { List, ListItem, Paper, Typography, ListItemText } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import ListItemText from "@mui/material/ListItemText";
+// #Performance tree-shaking the material ui components
 
 type Props = {
   postId: number;

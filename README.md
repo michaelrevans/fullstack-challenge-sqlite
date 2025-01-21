@@ -32,7 +32,7 @@ Consider the following, for instance leaving comments close to where this is rel
 - SSR and SSG
 - Possible infrastructure setup to help with the above
 
-
+Answering the above questions:
 - Scalability of the solution:
   - Switch to a Postgres database allowing for better scalability including introducing read replicas and sharding
   - Infinite scroll - not implemented due to time restrictions - instead of having to click on a button to load more posts
