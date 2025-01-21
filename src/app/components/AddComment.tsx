@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Box, TextField, Button, CircularProgress } from "@mui/material";
 import { trpcReact } from "@/trpc/trpcReact";
+import SendIcon from '@mui/icons-material/Send';
 
 type Props = {
   postId: number;
@@ -74,6 +75,7 @@ const AddComment = ({ postId }: Props) => {
         variant="contained"
         size="large"
         disabled={!newComment.trim()}
+        endIcon={isLoading ? null : <SendIcon />}
       >
         {isLoading ? <CircularProgress size={27} /> : "Add"}
       </Button>

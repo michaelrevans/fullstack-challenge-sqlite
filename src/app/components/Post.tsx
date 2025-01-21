@@ -6,6 +6,7 @@ import {
   Collapse,
   Typography,
 } from "@mui/material";
+import CommentIcon from "@mui/icons-material/Comment";
 import { useState } from "react";
 import Comments from "./Comments";
 import { EnhancedPost } from "@/types";
@@ -43,7 +44,12 @@ const Post = ({ post }: Props) => {
 
         {commentCount > 0 && (
           <Box>
-            <Button onClick={handleToggleComments} size="small" sx={{ mt: 1 }}>
+            <Button
+              onClick={handleToggleComments}
+              size="small"
+              sx={{ mt: 1 }}
+              startIcon={<CommentIcon />}
+            >
               {commentCount} comments
             </Button>
 
